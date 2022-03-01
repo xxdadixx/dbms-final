@@ -7,8 +7,9 @@ export default class Register extends Component{
         super();
         this.state = {
             idkey:"",
-            firstname:"",
-            lastname:""
+            name:"",
+            email:localStorage.getItem("user").email,
+            province_name:""
         }
         this.handleChang = this.handleChang.bind(this);
         this.handleClicked = this.handleClicked.bind(this);
@@ -22,14 +23,16 @@ export default class Register extends Component{
         let url = `https://localhost:3000/data`;
         let data = {
             idkey:this.state.idkey,
-            firstname:this.state.firstname,
-            lastname:this.state.lastname
+            name:this.state.name,
+            email:JSON.parse(localStorage.getItem('user')).email,
+            province_name:this.state.province_name
         }
         axios.post(url,data)
         this.setState({
             idkey:"",
-            firstname:"",
-            lastname:""
+            name:"",
+            email:"",
+            province_name:""
         });
     }
 
@@ -42,18 +45,20 @@ export default class Register extends Component{
                 </div>
                 <form className="container">
                     <div className="form-group">
-                        <label className="text-white" >First Name</label>
-                        <input type="text" className="form-control" id="firstname" onChange={this.handleChang} value={this.state.firstname}/>
-                    </div>
-                    <div className="form-group">
-                        <label className="text-white"  >Last Name</label>
-                        <input type="text" className="form-control" id="lastname" onChange={this.handleChang} value={this.state.lastname}/>
-                    </div>
-                    <div className="form-group">
-                        <label className="text-white"  htmlFor="id">Id</label>
+                        <label className="text-white"  htmlFor="id">ID</label>
                         <input type="text" className="form-control" size="10" id="idkey" onChange={this.handleChang} value={this.state.idkey}/>
                     </div>
+                    <div className="form-group">
+                        <label className="text-white"  >Name</label>
+                        <input type="text" className="form-control" id="name" onChange={this.handleChang} value={this.state.name}/>
+                    </div>
+                    <div className="form-group">
+                        <label className="text-white"  >Province Name</label>
+                        <input type="text" className="form-control" id="province_name" onChange={this.handleChang} value={this.state.province_name}/>
+                    </div>
+                    <a href="/Showdata">
                     <button type="button" className="btn btn-primary" onClick={this.handleClicked}>Submit</button>
+                    </a>
                 </form>
             </div>
         );
