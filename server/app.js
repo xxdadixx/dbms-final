@@ -26,7 +26,18 @@ const db = mysql.createConnection({
 // show data
 app.get('/data', function(req,res){
     console.log("Hello in /data ");
-    let sql = 'SELECT * FROM users;';
+    let sql = 'SELECT * FROM users left join movietype on movietype.movietype_id = users.user_movietype;';
+    db.query(sql, (err, result)=>{
+        if(err) throw err;
+        console.log(result);
+        res.json(result);
+    });
+    console.log("after query");
+});
+
+app.get('/movietype', function(req,res){
+    console.log("Hello in /data ");
+    let sql = 'SELECT * FROM movietype;';
     db.query(sql, (err, result)=>{
         if(err) throw err;
         console.log(result);
@@ -59,8 +70,8 @@ app.post('/data', function(req, res){
     let data = {
         id:req.body.idkey,
         name:req.body.name,
-        email:req.body.email,
-        province_name:req.body.province_name
+        user_movietype:req.body.user_movietype,
+        email:req.body.email
     };
     let sql = 'INSERT INTO users SET ?';
     db.query(sql, data, (err, result)=>{

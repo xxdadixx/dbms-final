@@ -29,6 +29,7 @@ export default class Showdata extends Component{
         console.log("after fetch data");
     }
 
+
     onDelete=(user)=>{
         let url = `https://localhost:3000/delete`;
         let data = {
@@ -36,7 +37,7 @@ export default class Showdata extends Component{
             timestamp:user.timestamp,
             name:user.name,
             email:user.email,
-            province_name:user.province_name
+            movietype:user.movietype
         }
         axios.put(url,data)
         setTimeout(()=>{this.componentDidMount()},1)
@@ -59,7 +60,7 @@ export default class Showdata extends Component{
             idkey:user.id,
             name:user.name,
             email:user.email,
-            province_name:user.province_name
+            movietype:user.movietype
             
         })
     }
@@ -73,7 +74,7 @@ export default class Showdata extends Component{
             timestamp:this.state.timestamp,
             name:this.state.name,
             email:this.state.email,
-            province_name:this.state.province_name
+            movietype:this.state.movietype
         }
         axios.put(url,data)
     }
@@ -85,7 +86,7 @@ export default class Showdata extends Component{
             timestamp:this.state.timestamp,
             name:this.state.name,
             email:this.state.email,
-            province_name:this.state.province_name
+            movietype:this.state.movietype
         }
         axios.put(url,data)
         this.setState({
@@ -93,7 +94,7 @@ export default class Showdata extends Component{
             timestamp:"",
             name:"",
             email: "",
-            province_name:""
+            movietype:""
         });
 	this.closeModal();
         setTimeout(()=>{this.componentDidMount()},1)
@@ -113,7 +114,7 @@ export default class Showdata extends Component{
                             <th>Date-Time</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Province Name</th>
+                            <th>Movie Type</th>
                             <th>Edit Account</th>
                             <th>Delete Account</th>
                             </tr>
@@ -126,7 +127,7 @@ export default class Showdata extends Component{
                                             <td>{user.timestamp}</td>
                                             <td>{user.name}</td>
                                             <td>{user.email}</td>
-                                            <td>{user.province_name}</td>
+                                            <td>{user.movietype_name}</td>
                                             <td><button type="button" class="btn btn-warning" onClick={()=>this.call(user)}>Edit</button></td>
                                             <td><button type="button" class="btn btn-danger"  onClick={()=>this.onDelete(user)}>Delete</button></td>
                                             <div className="box">
@@ -147,10 +148,6 @@ export default class Showdata extends Component{
                                                         <div className="form-group">
                                                             <label>Email:</label>
                                                             <input type="text" className="form-control" id="email" onChange={this.handleChang} value={this.state.email}/>
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label>Province Name:</label>
-                                                            <input type="text" className="form-control" id="province_name" onChange={this.handleChang} value={this.state.province_name}/>
                                                         </div>
                                                         <button type="button" className="btn btn-primary" onClick={this.handleClicked}>Submit</button>
                                                     </form>
