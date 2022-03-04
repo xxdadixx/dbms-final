@@ -44,7 +44,7 @@ export default class Register extends Component {
     }
     getData = () => {
         console.log("before fetch data");
-        fetch('/movietype')
+        fetch('/selectmovie')
             .then(res => res.json())
             .then(list => this.setState({ movielist:list }))
         console.log("after fetch data");

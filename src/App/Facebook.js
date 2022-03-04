@@ -6,6 +6,8 @@ import './style.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Register from "../register/Register";
 import Showdata from "../showdata/Showdata";
+import Movietype from "../movietype/Movietype";
+import { Link } from 'react-router-dom';
 
 export default class Facebook extends Component {
   state = {
@@ -63,12 +65,24 @@ export default class Facebook extends Component {
  	  email: {JSON.parse(localStorage.getItem('user')).email}
           <div className="my-3"><a className="btn btn-danger" href="/" onClick={this.logoutFacebook}>Logout</a></div>
           <BrowserRouter>
-            <br /><br /><div className="btn-group btn-group-lg"><ButtonRegister /><ButtonShowdata /></div>
+            <br /><br /><div className="btn-group btn-group-lg">
+            <div className="container">
+                <Link to={'./Register'}> <button type="button" className="btn btn-primary">Register</button> </Link>
+            </div>
+          <div className="container">
+                <Link to={'./Showdata'}> <button type="button" className="btn btn-primary">Showdata</button> </Link>
+            </div>
+            <div className="container">
+                <Link to={'./Movie'}> <button type="button" className="btn btn-primary">Movie</button> </Link>
+            </div>
+            </div>
             <Switch>
               <Route path='/register' component={Register} />
               <Route path='/showdata' component={Showdata} />
+              <Route path='/movie' component={Movietype} />
             </Switch>
           </BrowserRouter>
+          
         </div>
       );
     } else {

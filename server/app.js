@@ -35,9 +35,20 @@ app.get('/data', function(req,res){
     console.log("after query");
 });
 
-app.get('/movietype', function(req,res){
+app.get('/selectmovie', function(req,res){
     console.log("Hello in /data ");
     let sql = 'SELECT * FROM movietype;';
+    db.query(sql, (err, result)=>{
+        if(err) throw err;
+        console.log(result);
+        res.json(result);
+    });
+    console.log("after query");
+});
+
+app.get('/movietype', function(req,res){
+    console.log("Hello in /data ");
+    let sql = 'SELECT movietype.movietype_name AS movie, COUNT(*) AS total FROM users LEFT JOIN movietype ON users.user_movietype  = movietype.movietype_id GROUP BY movietype_id;';
     db.query(sql, (err, result)=>{
         if(err) throw err;
         console.log(result);
