@@ -7,6 +7,7 @@ export default class Register extends Component {
         super();
         this.state = {
             idkey: "",
+            username: "",
             name: "",
             user_movietype: "",
             email: localStorage.getItem("user").email,
@@ -24,6 +25,7 @@ export default class Register extends Component {
         let url = `https://localhost:3000/data`;
         let data = {
             idkey: this.state.idkey,
+            username: this.state.username,
             name: this.state.name,
             user_movietype: this.state.user_movietype,
             email: JSON.parse(localStorage.getItem('user')).email
@@ -31,6 +33,7 @@ export default class Register extends Component {
         axios.post(url, data)
         this.setState({
             idkey: "",
+            username:"",
             name: "",
             user_movietype: "",
             email: ""
@@ -59,12 +62,19 @@ export default class Register extends Component {
                 </div>
                 <form className="container">
                     <div className="form-group">
-                        <label className="text-white" htmlFor="id">ID</label>
+                        <label className="text-white" htmlFor="id">Movie ID</label>
                         <input type="text" className="form-control" size="10" id="idkey" onChange={this.handleChang} value={this.state.idkey} />
                     </div>
                     <div className="form-group">
-                        <label className="text-white"  >Name</label>
+                        <label className="text-white"  >Firstname and lastname</label>
+                        <input type="text" className="form-control" id="username" onChange={this.handleChang} value={this.state.username} />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-white"  >Movie name</label>
                         <input type="text" className="form-control" id="name" onChange={this.handleChang} value={this.state.name} />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-white"  >Select to movie type</label>
                     </div>
                     <div>
                     <select className="form-control" id="user_movietype" onChange={this.handleChang} value={this.state.user_movietype} required>

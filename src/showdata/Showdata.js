@@ -35,8 +35,8 @@ export default class Showdata extends Component{
         let data = {
             idkey:user.id,
             timestamp:user.timestamp,
+            username:user.username,
             name:user.name,
-            email:user.email,
             movietype:user.movietype
         }
         axios.put(url,data)
@@ -58,8 +58,8 @@ export default class Showdata extends Component{
         this.openModal();
         this.setState({
             idkey:user.id,
+            username:user.username,
             name:user.name,
-            email:user.email,
             movietype:user.movietype
             
         })
@@ -72,8 +72,8 @@ export default class Showdata extends Component{
         let data = {
             idkey:this.state.idkey,
             timestamp:this.state.timestamp,
+            username:this.state.username,
             name:this.state.name,
-            email:this.state.email,
             movietype:this.state.movietype
         }
         axios.put(url,data)
@@ -84,16 +84,16 @@ export default class Showdata extends Component{
         let data = {
             idkey:this.state.idkey,
             timestamp:this.state.timestamp,
+            username:this.state.username,
             name:this.state.name,
-            email:this.state.email,
             movietype:this.state.movietype
         }
         axios.put(url,data)
         this.setState({
             idkey:"",
             timestamp:"",
+            username:"",
             name:"",
-            email: "",
             movietype:""
         });
 	this.closeModal();
@@ -112,6 +112,7 @@ export default class Showdata extends Component{
                             <tr>
                             <th>ID</th>
                             <th>Date-Time</th>
+                            <th>Firstname and lastname</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Movie Type</th>
@@ -125,6 +126,7 @@ export default class Showdata extends Component{
                                         <tr>
                                             <td>{user.id}</td>
                                             <td>{user.timestamp}</td>
+                                            <td>{user.username}</td>
                                             <td>{user.name}</td>
                                             <td>{user.email}</td>
                                             <td>{user.movietype_name}</td>
@@ -142,12 +144,12 @@ export default class Showdata extends Component{
                                                             <h3><label htmlFor="id">ID: {this.state.idkey}<br/></label></h3>
                                                         </div>
                                                         <div className="form-group">
-                                                            <label>Name:</label>
-                                                            <input type="text" className="form-control" id="name" onChange={this.handleChang} value={this.state.name}/>
+                                                            <label>Firstname and lastname:</label>
+                                                            <input type="text" className="form-control" id="username" onChange={this.handleChang} value={this.state.username}/>
                                                         </div>
                                                         <div className="form-group">
-                                                            <label>Email:</label>
-                                                            <input type="text" className="form-control" id="email" onChange={this.handleChang} value={this.state.email}/>
+                                                            <label>Name:</label>
+                                                            <input type="text" className="form-control" id="name" onChange={this.handleChang} value={this.state.name}/>
                                                         </div>
                                                         <button type="button" className="btn btn-primary" onClick={this.handleClicked}>Submit</button>
                                                     </form>

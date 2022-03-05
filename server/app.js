@@ -68,8 +68,8 @@ app.put('/delete', function(req, res) {
 
 //edit
 app.put('/data', function(req, res) {
-    var sql = 'UPDATE users SET name= ? , WHERE id = ?';
-    db.query(sql,[req.body.name,req.body.idkey],function (error, results) {
+    var sql = 'UPDATE users SET username= ?, name= ? WHERE id = ?';
+    db.query(sql,[req.body.username,req.body.name,req.body.idkey],function (error, results) {
         if(error) throw error;
         res.send(JSON.stringify(results));
     });
@@ -80,6 +80,7 @@ app.post('/data', function(req, res){
     console.log(req.body);
     let data = {
         id:req.body.idkey,
+        username:req.body.username,
         name:req.body.name,
         user_movietype:req.body.user_movietype,
         email:req.body.email
